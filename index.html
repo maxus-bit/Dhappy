@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мій Світ Minecraft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&family=VT323&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="sky" id="sky">
+        <header>
+            <h1 class="pixel-text">Привіт! Це мій світ!</h1>
+            <p>Мені 7 років, і я майстер будівництва ⛏️</p>
+        </header>
+
+        <!-- Новий блок з фотографією та побажанням -->
+        <section class="hero-section">
+            <div class="photo-frame">
+                <!-- Заміни 'nephew.jpg' на назву файлу з реальним фото -->
+                <img src="img/Dwith.jpg" alt="Моє круте фото">
+            </div>
+            <div class="wish-box card">
+                <h2>Для найкращого майстра!</h2>
+                <p>Бажаю тобі знаходити алмази в кожній печері, будувати найвищі замки та ніколи не здаватися перед
+                    кріперами! Зі святом, рости сміливим та веселим! 🎂</p>
+            </div>
+        </section>
+
+        <main>
+            <!-- Блок інформації про племінника -->
+            <section class="card about-me">
+                <div class="avatar">
+                    <img src="img/steve.png" alt="Мій Аватар">
+                </div>
+                <h2>Про мене</h2>
+                <ul>
+                    <li>🎮 Обожнюю грати в Minecraft</li>
+                    <li>🏰 Будую гігантські замки</li>
+                    <li>⚔️ Не боюсь кріперів (майже)</li>
+                    <li>🍕 Люблю піцу та пригоди</li>
+                </ul>
+            </section>
+
+            <!-- Інтерактивний блок-мінігра -->
+            <section class="card game-section">
+                <h2>Збери алмази!</h2>
+                <p>Допоможи мені зібрати 7 алмазів у шахті:</p>
+                <div class="diamond-counter">Алмазів: <span id="score">0</span> 💎</div>
+                <button id="mine-btn" class="mc-button">Видобути!</button>
+            </section>
+        </main>
+
+        <footer>
+            <button id="time-btn" class="mc-button small-btn">Змінити час доби ☀️/🌙</button>
+        </footer>
+    </div>
+
+    <!-- Модальне вікно з подарунком (приховане за замовчуванням) -->
+    <div id="prize-modal" class="modal">
+        <div class="modal-content card">
+            <h2>Перемога! 🎉</h2>
+            <p>Ти супер-майнер! Ти виграв справжню фігурку з Майнкрафту!</p>
+            <button id="close-modal" class="mc-button">Круто!</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+<script>
+    let score = 0;
+    const targetDiamonds = 7;
+    const scoreElement = document.getElementById('score');
+    const mineBtn = document.getElementById('mine-btn');
+    const modal = document.getElementById('prize-modal');
+    const closeModalBtn = document.getElementById('close-modal');
+
+    let hasWon = false;
+
+    mineBtn.addEventListener('click', () => {
+        // Якщо вікно вже відкрито, не даємо клікати далі
+        if (hasWon) return;
+
+        score++;
+        scoreElement.textContent = score;
+
+        // Візуальний ефект кліку
+        mineBtn.style.backgroundColor = 'var(--mc-diamond)';
+        mineBtn.style.color = '#000';
+
+        setTimeout(() => {
+            mineBtn.style.backgroundColor = 'var(--mc-grass)';
+            mineBtn.style.color = '#fff';
+        }, 150);
+
+        // Перевірка на виграш
+        if (score === targetDiamonds && !hasWon) {
+            hasWon = true;
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 300);
+        }
+    });
+
+    // Дії при закритті модального вікна
+    closeModalBtn.addEventListener('click', () => {
+        modal.classList.remove('show');
+
+        // ОБНУЛЕННЯ ГРИ:
+        score = 0; // Скидаємо рахунок
+        scoreElement.textContent = score; // Оновлюємо цифру на екрані
+        hasWon = false; // Дозволяємо вигравати знову
+    });
+
+    const timeBtn = document.getElementById('time-btn');
+    const skyElement = document.getElementById('sky');
+
+    timeBtn.addEventListener('click', () => {
+        skyElement.classList.toggle('night');
+    });
+</script>
+
+</html>

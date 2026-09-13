@@ -1,0 +1,347 @@
+:root {
+    --mc-grass: #5c9e31;
+    --mc-dirt: #86592d;
+    --mc-sky-day: #78a7ff;
+    --mc-sky-night: #111424;
+    --mc-diamond: #51f5e0;
+    --mc-text-dark: #222;
+    --mc-white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--mc-text-dark);
+}
+
+.sky {
+    background-color: var(--mc-sky-day);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    transition: background-color 0.8s ease-in-out;
+}
+
+.sky.night {
+    background-color: var(--mc-sky-night);
+    color: var(--mc-white);
+}
+
+header {
+    text-align: center;
+    margin: 20px 0 30px;
+}
+
+.pixel-text {
+    font-family: 'VT323', monospace;
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 4px 4px 0 #000;
+    letter-spacing: 2px;
+}
+
+header p {
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 800;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
+}
+
+/* Новий блок: Фото та Побажання */
+.hero-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 900px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.photo-frame {
+    flex: 1;
+    min-width: 250px;
+    max-width: 400px;
+    background-color: #e0e0e0;
+    border: 6px solid #000;
+    border-radius: 12px;
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wish-box {
+    flex: 2;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wish-box p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    max-width: 900px;
+    width: 100%;
+}
+
+.card {
+    background: var(--mc-white);
+    border: 6px solid #000;
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.25);
+    position: relative;
+    color: var(--mc-text-dark);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: var(--mc-grass);
+    border-bottom: 4px solid #000;
+    border-radius: 6px 6px 0 0;
+}
+
+.card h2 {
+    font-family: 'VT323', monospace;
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    color: var(--mc-grass);
+    text-shadow: 2px 2px 0 #000;
+}
+
+.avatar {
+    width: 130px;
+    height: 130px;
+    background-color: #e0e0e0;
+    border: 4px solid #000;
+    border-radius: 12px;
+    margin: 0 auto 20px;
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+ul {
+    list-style: none;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    font-weight: 600;
+}
+
+.diamond-counter {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 20px 0;
+    color: var(--mc-grass);
+}
+
+.mc-button {
+    background-color: #a0a0a0;
+    border: 4px solid #000;
+    color: #fff;
+    font-family: 'VT323', monospace;
+    font-size: 2.2rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: inset -4px -4px 0 rgba(0, 0, 0, 0.3), inset 4px 4px 0 rgba(255, 255, 255, 0.5);
+    transition: transform 0.1s, background-color 0.2s;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.mc-button:active {
+    box-shadow: inset 4px 4px 0 rgba(0, 0, 0, 0.4);
+    transform: scale(0.95);
+}
+
+#mine-btn {
+    background-color: var(--mc-grass);
+}
+
+#mine-btn:hover {
+    background-color: #6eb73c;
+}
+
+footer {
+    margin-top: 50px;
+}
+
+.small-btn {
+    font-size: 1.5rem;
+    width: auto;
+    background-color: #77553a;
+}
+
+/* Стилі для модального вікна */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal .modal-content {
+    max-width: 450px;
+    text-align: center;
+    transform: translateY(-50px);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.modal p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   АДАПТИВНІСТЬ ДЛЯ ПЛАНШЕТІВ ТА ТЕЛЕФОНІВ
+   ========================================= */
+
+/* Для планшетів та невеликих екранів (ширина до 768px) */
+@media (max-width: 768px) {
+    .pixel-text {
+        font-size: 3.2rem;
+        /* Трохи менший головний заголовок */
+    }
+
+    header p {
+        font-size: 1.3rem;
+    }
+
+    /* Блок з фотографією та побажанням стає вертикальним */
+    .hero-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .photo-frame {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .wish-box {
+        min-width: 100%;
+        text-align: center;
+    }
+
+    .card {
+        max-width: 100%;
+    }
+}
+
+/* Для смартфонів (ширина до 480px) */
+@media (max-width: 480px) {
+    .sky {
+        padding: 15px 10px;
+    }
+
+    .pixel-text {
+        font-size: 2.5rem;
+        /* Ще менший заголовок для телефонів */
+        letter-spacing: 1px;
+    }
+
+    header p {
+        font-size: 1.1rem;
+    }
+
+    .card {
+        padding: 20px 15px;
+        /* Менші відступи всередині карток */
+    }
+
+    .card h2 {
+        font-size: 2.2rem;
+    }
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    ul {
+        font-size: 1.1rem;
+    }
+
+    .diamond-counter {
+        font-size: 1.6rem;
+    }
+
+    /* Адаптація кнопок */
+    .mc-button {
+        font-size: 1.6rem;
+        padding: 10px 15px;
+    }
+
+    .small-btn {
+        font-size: 1.2rem;
+    }
+
+    /* Модальне вікно не вилазить за краї екрана */
+    .modal .modal-content {
+        margin: 0 15px;
+        padding: 20px;
+    }
+
+    .modal p {
+        font-size: 1.2rem;
+    }
+}
